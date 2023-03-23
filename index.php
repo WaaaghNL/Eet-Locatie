@@ -27,6 +27,11 @@ $name = str_replace("www.", "", $name);
 if(substr($name, -1) == '/') {
     $name = substr($name, 0, -1);
 }
+
+
+
+$homepage_url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+$escaped_url = htmlspecialchars( $homepage_url, ENT_QUOTES, 'UTF-8' );
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +52,7 @@ if(substr($name, -1) == '/') {
             <div id="password-panel-message">Wij gaan eten bij...</div>
         	<div id="password"><a id="password-input" href="<?=$output[$count];?>"><?=$name;?></a></div>
         	<div id="password-panel-reset">
-        	    <a class="gradient-button gradient-button-TEST">Andere Locatie</a>
+        	    <a class="gradient-button gradient-button-TEST" href="<?=$escaped_url;?>">Andere Locatie</a>
         	</div>
         	
         </div>
@@ -65,7 +70,7 @@ if(substr($name, -1) == '/') {
 
 <div id="footer">
   <p>
-	<a href="https://www.waaagh.nl">  &copy; Waaagh.nl <span id="curr_year"></span> All right reserved</a> | <a href="https://github.com/WaaaghNL/Eet-Locatie">Github Page</a>.
+	<a href="https://www.waaagh.nl">  &copy; Waaagh.nl <span id="curr_year"></span> All right reserved</a> | <a href="https://github.com/WaaaghNL/Eet-Locatie">Github Page</a>
   </p>
 </div>
 
