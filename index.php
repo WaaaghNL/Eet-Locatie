@@ -1,6 +1,6 @@
 <?php
-$json = file_get_contents('https://www.waaagh.nl/api.php?format=json&action=query&titles=Restaurants_ToDo&prop=revisions&rvprop=content');
-$json = json_decode($json, true);
+$get = file_get_contents('https://www.waaagh.nl/api.php?format=json&action=query&titles=Restaurants_ToDo&prop=revisions&rvprop=content');
+$json = json_decode($get, true);
 
 $json = $json["query"]["pages"][812]["revisions"][0]["*"];
 
@@ -27,8 +27,6 @@ $name = str_replace("www.", "", $name);
 if(substr($name, -1) == '/') {
     $name = substr($name, 0, -1);
 }
-
-
 
 $homepage_url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 $escaped_url = htmlspecialchars( $homepage_url, ENT_QUOTES, 'UTF-8' );
@@ -70,11 +68,9 @@ $escaped_url = htmlspecialchars( $homepage_url, ENT_QUOTES, 'UTF-8' );
 
 <div id="footer">
   <p>
-	<a href="https://www.waaagh.nl">  &copy; Waaagh.nl <span id="curr_year"></span> All right reserved</a> | <a href="https://github.com/WaaaghNL/Eet-Locatie">Github Page</a>
+	<a href="https://www.waaagh.nl">  &copy; <?=date('Y');?> Waaagh.nl All right reserved</a> | <a href="https://github.com/WaaaghNL/Eet-Locatie">Github Page</a>
   </p>
 </div>
-
-<script>document.getElementById("curr_year").innerHTML = new Date().getFullYear()</script>
 
 </body>
 </html>
