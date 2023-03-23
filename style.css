@@ -1,0 +1,244 @@
+html{color:#000;background:#FFF;}
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
+
+table{border-collapse:collapse;border-spacing:0;}
+
+fieldset,img{border:0;}
+
+address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}
+
+li{list-style:none;}
+caption,th{text-align:left;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+q:before,q:after{content:'';}
+abbr,acronym{border:0;font-variant:normal;}
+sup{vertical-align:text-top;}
+sub{vertical-align:text-bottom;}
+input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}
+input,textarea,select{*font-size:100%;}
+legend{color:#000;}
+
+
+/***************************************************************************
+*
+* Global
+*
+****************************************************************************/
+
+body {
+	font-family:Trebuchet MS, Arial, Helvetica, sans-serif;
+	padding: 0;
+	margin: 0;
+}
+
+:focus {
+	outline: 0;
+}
+
+.clearer {
+	clear:both;
+}
+
+/***************************************************************************
+*
+* Header
+*
+****************************************************************************/
+#header {
+	background:transparent url(bg-clouds.jpg) repeat-x center top;
+	height:95px;
+	position: relative;
+	padding-top: 85px;
+	
+}
+
+/***************************************************************************
+*
+* Password panel on home page
+*
+****************************************************************************/
+
+#password-panel {
+	width:900px;
+	margin:0 auto;
+	background:transparent url(dino-speech.jpg) no-repeat 0 0;
+	height:450px;
+	position:relative;
+}
+
+#password-panel-message {
+	position:absolute;
+	top:70px;
+	left:440px;
+	width:400px;
+	height:100px;
+	font-size:36px;
+	font-weight:bold;
+	color:#fff;
+	text-align:center;
+	overflow:hidden;
+}
+
+#password-input {
+	position:absolute;
+	top:175px;
+	left:435px;
+	width:405px;
+	height:70px;
+	font-weight:bold;
+	font-size:28px;
+	text-align:center;
+	border:0;
+}
+#password a {
+	color: #ed761b;
+}
+
+
+#password-panel #password-panel-reset {
+	top:290px;
+	left:420px;
+}
+#password-panel-reset {
+	position:absolute;
+	top:50px;
+	left:440px;
+	width:440px;
+	height:100px;
+	font-size:28px;
+	font-weight:bold;
+	color:#fff;
+	text-align:center;
+	overflow:hidden;
+}
+
+.gradient-button {
+    margin: 10px;
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 20px;
+    padding: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: #FFF;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    width: 360px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 25px;
+}
+.gradient-button:hover{
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    margin: 8px 10px 12px;
+}
+.gradient-button-1 {background-image: linear-gradient(to right, #DD5E89 0%, #F7BB97 51%, #DD5E89 100%)}
+.gradient-button-1:hover { background-position: right center; }
+
+.gradient-button-2 {background-image: linear-gradient(to right, #2BC0E4 0%, #EAECC6 51%, #2BC0E4 100%)}
+.gradient-button-2:hover { background-position: right center; }
+
+.gradient-button-3 {background-image: linear-gradient(to right, #7474BF 0%, #348AC7 51%, #7474BF 100%)}
+.gradient-button-3:hover { background-position: right center; }
+
+.gradient-button-4 {background-image: linear-gradient(to right, #00d2ff 0%, #3a7bd5 51%, #00d2ff 100%)}
+.gradient-button-4:hover { background-position: right center; }
+
+.gradient-button-TEST {background-image: linear-gradient(to right, #e8b021 0%, #e67215 51%, #e8b021 100%)}
+.gradient-button-TEST:hover { background-position: right center; }
+
+/***************************************************************************
+*
+* Main
+*
+****************************************************************************/
+
+#main {
+	clear:both;
+	margin-top:40px;
+}
+
+#main-content {
+	width:900px;
+	margin:0 auto;
+}
+
+/***************************************************************************
+*
+* Content
+*
+****************************************************************************/
+
+#main .content {
+	line-height:26px;
+}
+
+#main .content p,
+#main .content button {
+	font-size:16px;
+}
+
+
+#main .content p {
+	margin-bottom:10px;
+}
+
+#main .content .error {
+	color:red;
+	background-color:yellow;
+	padding:10px;
+}
+
+#main .content h2 {
+	/* color:#4088a8; */
+	color:#ed761b;
+	font-size:36px;
+	font-weight:bold;
+	margin-bottom:20px;
+}
+
+#main .content h3 {
+	color:#4088a8;
+	font-size:18px;
+	font-weight:bold;
+	margin:20px 0;
+}
+
+#main .content a {
+	color:#ed761b;
+}
+
+/***************************************************************************
+*
+* Footer
+*
+****************************************************************************/
+
+#footer {
+	background:transparent url(footer-bg-clouds.jpg) repeat-x center top;
+	text-align:center;
+	padding-top:120px;
+	height:50px;
+	color:#000;
+	font-size:16px;
+	text-shadow: #fff 1px 1px 1px;
+}
+
+#footer .divider {
+	color:#fff;
+	text-shadow: none;
+}
+
+#footer a {
+	text-decoration:none;
+	color:#ed761b;
+}
+
+#footer a:hover {
+	color:#ed761b;
+	text-decoration:none;
+}
