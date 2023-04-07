@@ -1,5 +1,22 @@
 <?php
-$get = file_get_contents('https://www.waaagh.nl/api.php?format=json&action=query&titles=Restaurants_ToDo&prop=revisions&rvprop=content');
+// Initialize cURL
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'https://www.waaagh333.nl/api.php?format=json&action=query&titles=Restaurants_ToDo&prop=revisions&rvprop=content');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+// Execute cURL request
+$get = curl_exec($ch);
+
+// Check for cURL errors
+if(curl_errno($ch)){
+    // Handle error
+    die("Oh no! The url was not valid!");
+}
+
+// Close cURL
+curl_close($ch);
+
+
 $json = json_decode($get, true);
 
 $json = $json["query"]["pages"][812]["revisions"][0]["*"];
