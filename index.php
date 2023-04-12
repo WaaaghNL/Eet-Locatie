@@ -1,7 +1,7 @@
 <?php
 // Initialize cURL
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://www.waaagh333.nl/api.php?format=json&action=query&titles=Restaurants_ToDo&prop=revisions&rvprop=content');
+curl_setopt($ch, CURLOPT_URL, 'https://www.waaagh.nl/api.php?format=json&action=query&titles=Restaurants_ToDo&prop=revisions&rvprop=content');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 // Execute cURL request
