@@ -11,6 +11,9 @@ $cacheFile = 'cache.json';
 if($debug or isset($_GET['debug'])){
     $debugMode=true;
 }
+else{
+    $debugMode=false;
+}
 
 if($debugMode){
     echo '<h1 style="font-size: 2em;color: red; font-weight: bold;">Debugging mode active!</h1>';
@@ -156,10 +159,10 @@ else{
         file_put_contents($cacheFile, $json, LOCK_EX);
         if($debugMode){
             $file = file_get_contents($cacheFile);
-            $location = json_decode($file, true);
+            $location_file = json_decode($file, true);
             echo '<h2 style="font-size: 1.5em;color: darkorange; font-weight: bold;">Check if cache is set</h2>';
             echo "<pre>";
-            print_r($location);
+            print_r($location_file);
             echo "</pre><hr />";
         }
 		//------------------------------------------------------------------------------
@@ -205,12 +208,18 @@ $escaped_url = htmlspecialchars( $homepage_url, ENT_QUOTES, 'UTF-8' );
                     	<p>De eet locatie generator is een project van Waaagh.nl en haalt links uit het overzicht van restaurants die de Smullertjes nog willen uit proberen. Deze lijst wordt door de dino in een bak met lootjes gegooid en daarna trekt hij er een uit.</p>
                     	<h3>Waar kan ik de hele lijst zien?</h3>
                     	<p>De hele lijst die in de ELG gaat is te vinden op de volgende webpagina: <a href="https://www.waaagh.nl/Restaurants_ToDo" target="_blank">Waaagh.nl - Restaurants TODO</a></p>
-            
-                        <h3>Ik krijg niets nieuws!</h3>
                         <?php
-                        $timer = ((filemtime($cacheFile) - (time() - 60 * $cacheInMinutes )) > 0) ? (filemtime($cacheFile) - (time() - 60 * $cacheInMinutes )) : 120;
+                        //Hide when force mode is used
+                        if(!isset($_GET['force'])){
+                            ?>
+                            <h3>Ik krijg niets nieuws!</h3>
+                            <?php
+                            $timer = ((filemtime($cacheFile) - (time() - 60 * $cacheInMinutes )) > 0) ? (filemtime($cacheFile) - (time() - 60 * $cacheInMinutes )) : 120;
+                            ?>
+                            <p>Onze dino is behoorlijk standvast, als hij iets aanraad gaat hij er ook voor. Het duurt nog <?=$timer;?> secoden voor je hem kan overtuigen voor een nieuw adresje! <a href="<?=$escaped_url;?>?noCache" style="color:#f5f5f5;">Over rule de dino</a></p>
+                            <?php
+                        }
                         ?>
-                        <p>Onze dino is behoorlijk standvast, als hij iets aanraad gaat hij er ook voor. Het duurt nog <?=$timer;?> secoden voor je hem kan overtuigen voor een nieuw adresje! <a href="<?=$escaped_url;?>?noCache" style="color:#f5f5f5;">Over rule de dino</a></p>
                     </div>
                 </div>
             </div>            
