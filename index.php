@@ -1,7 +1,10 @@
 <?php
+//Config
+$wikiURL = 'https://www.waaagh.nl/api.php?format=json&action=query&titles=Restaurants_ToDo&prop=revisions&rvprop=content';
+
 // Initialize cURL
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://www.waaagh.nl/api.php?format=json&action=query&titles=Restaurants_ToDo&prop=revisions&rvprop=content');
+curl_setopt($ch, CURLOPT_URL, $wikiURL);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 // Execute cURL request
@@ -19,7 +22,13 @@ curl_close($ch);
 
 $json = json_decode($get, true);
 
-$json = $json["query"]["pages"][812]["revisions"][0]["*"];
+if(count($json["query"]["pages"]) != 1){
+    die('To many pages to chose from! check the url!');
+}
+
+foreach ($json["query"]["pages"] AS $key => $value){
+    $json = $json["query"]["pages"][$key]["revisions"][0]["*"];
+}
 
 $json = str_ireplace('Naast een lijst van goede restaurantjes heb ik natuurlijk ook nog een ToDo lijst met aanraders van derden. [https://eetlocatie.waaagh.nl/ Laat de dino je helpen om een keuze te maken!]',null,$json);
 $json = trim($json);
@@ -34,9 +43,8 @@ foreach ($array as $key => $value){
     }
 }
 shuffle($output); //Random output
-$count = rand(1, count($output));
 
-$url = $output[$count];
+$url = $output[0];
 $name = $url;
 $name = str_replace("https://", "", $name);
 $name = str_replace("http://", "", $name);
@@ -45,7 +53,7 @@ if(substr($name, -1) == '/') {
     $name = substr($name, 0, -1);
 }
 
-$homepage_url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+$homepage_url =  "//{$_SERVER['HTTP_HOST']}";
 $escaped_url = htmlspecialchars( $homepage_url, ENT_QUOTES, 'UTF-8' );
 ?>
 <!DOCTYPE html>
@@ -63,16 +71,16 @@ $escaped_url = htmlspecialchars( $homepage_url, ENT_QUOTES, 'UTF-8' );
 </div>
 <div id="main">
     <div id="main-content">
-        <div id="password-panel">
-            <div id="password-panel-message">Wij gaan eten bij...</div>
-        	<div id="password"><a id="password-input" href="<?=$output[$count];?>"><?=$name;?></a></div>
-        	<div id="password-panel-reset">
+        <div id="speech-panel">
+            <div id="speech-panel-message">Wij gaan eten bij...</div>
+        	<div id="speech"><a id="speech-input" href="<?=$output[$count];?>"><?=$name;?></a></div>
+        	<div id="speech-panel-reset">
         	    <a class="gradient-button gradient-button-TEST" href="<?=$escaped_url;?>">Andere Locatie</a>
         	</div>
         	
         </div>
     
-        <div id="about-passwords" class="content">
+        <div class="content">
         	<h2>Over de Eet Locatie Generator</h2>
         	<h3>Wat is de ELG?</h3>
         	<p>De eet locatie generator is een project van Waaagh.nl en haalt links uit het overzicht van restaurants die de Smullertjes nog willen uit proberen. Deze lijst wordt door de dino in een bak met lootjes gegooid en daarna trekt hij er een uit.</p>
@@ -85,7 +93,7 @@ $escaped_url = htmlspecialchars( $homepage_url, ENT_QUOTES, 'UTF-8' );
 
 <div id="footer">
   <p>
-	<a href="https://www.waaagh.nl">  &copy; <?=date('Y');?> Waaagh.nl All right reserved</a> | <a href="https://github.com/WaaaghNL/Eet-Locatie">Github Page</a>
+	<a href="https://www.waaagh.nl">  &copy; 2023 - <?=date('Y');?> Waaagh.nl All right reserved</a> | <a href="https://github.com/WaaaghNL/Eet-Locatie">Github Page</a>
   </p>
 </div>
 
