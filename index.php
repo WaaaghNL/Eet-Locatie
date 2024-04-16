@@ -65,37 +65,38 @@ $escaped_url = htmlspecialchars( $homepage_url, ENT_QUOTES, 'UTF-8' );
     <link rel="stylesheet" type="text/css" href="style.css" >
 </head>
 <body>
+<div id="container">
+    <div id="header">
+        <div id="header-content"></div>
+    </div>
 
-<div id="header">
-	<div id="header-content"></div>
-</div>
-<div id="main">
-    <div id="main-content">
-        <div id="speech-panel">
-            <div id="speech-panel-message">Wij gaan eten bij...</div>
-        	<div id="speech"><a id="speech-input" href="<?=$output[$count];?>"><?=$name;?></a></div>
-        	<div id="speech-panel-reset">
-        	    <a class="gradient-button gradient-button-TEST" href="<?=$escaped_url;?>">Andere Locatie</a>
-        	</div>
-        	
-        </div>
-    
-        <div class="content">
-        	<h2>Over de Eet Locatie Generator</h2>
-        	<h3>Wat is de ELG?</h3>
-        	<p>De eet locatie generator is een project van Waaagh.nl en haalt links uit het overzicht van restaurants die de Smullertjes nog willen uit proberen. Deze lijst wordt door de dino in een bak met lootjes gegooid en daarna trekt hij er een uit.</p>
+    <div id="main">
+        <div id="main-content">
+            <div id="speech-panel">
+                <div id="speech-panel-message">Wij gaan eten bij...</div>
+                <div id="speech"><a id="speech-input" href="<?=$output[$count];?>"><?=$name;?></a></div>
+                <div id="speech-panel-reset">
+                    <a class="gradient-button gradient-button-TEST" href="<?=$escaped_url;?>">Andere Locatie</a>
+                </div>
+                
+            </div>
         
-        	<h3>Waar kan ik de hele lijst zien?</h3>
-        	<p>De hele lijst die in de ELG gaat is te vinden op de volgende webpagina: <a href="https://www.waaagh.nl/Restaurants_ToDo" target="_blank">Waaagh.nl - Restaurants TODO</a></p>
+            <div class="content">
+                <h2>Over de Eet Locatie Generator</h2>
+                <h3>Wat is de ELG?</h3>
+                <p>De eet locatie generator is een project van Waaagh.nl en haalt links uit het overzicht van restaurants die de Smullertjes nog willen uit proberen. Deze lijst wordt door de dino in een bak met lootjes gegooid en daarna trekt hij er een uit.</p>
+            
+                <h3>Waar kan ik de hele lijst zien?</h3>
+                <p>De hele lijst die in de ELG gaat is te vinden op de volgende webpagina: <a href="https://www.waaagh.nl/Restaurants_ToDo" target="_blank">Waaagh.nl - Restaurants TODO</a></p>
+            </div>
         </div>
     </div>
-</div>
 
-<div id="footer">
-  <p>
-	<a href="https://www.waaagh.nl">  &copy; 2023 - <?=date('Y');?> Waaagh.nl All right reserved</a> | <a href="https://github.com/WaaaghNL/Eet-Locatie">Github Page</a>
-  </p>
+    <div id="footer">
+        <p>
+            <a href="https://www.waaagh.nl">  &copy; 2023 - <?=date('Y');?> Waaagh.nl All right reserved</a> | <a href="https://github.com/WaaaghNL/Eet-Locatie">Github Page</a>
+        </p>
+    </div>
 </div>
-
 </body>
 </html>
