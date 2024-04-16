@@ -1,6 +1,18 @@
 <?php
 //Config
 $wikiURL = 'https://www.waaagh.nl/api.php?format=json&action=query&titles=Restaurants_ToDo&prop=revisions&rvprop=content';
+$debug = false;
+
+//Don't edit below!
+//Don't edit below!
+if($debug or isset($_GET['debug'])){
+    $debugMode=true;
+}
+
+if($debugMode){
+    echo '<h1 style="font-size: 2em;color: red; font-weight: bold;">Debugging mode active!</h1>';
+}
+//------------------------------------------------------------------------------
 
 // Initialize cURL
 $ch = curl_init();
@@ -19,8 +31,15 @@ if(curl_errno($ch)){
 // Close cURL
 curl_close($ch);
 
-
 $json = json_decode($get, true);
+
+if($debugMode){
+    echo '<h2 style="font-size: 1.5em;color: darkorange; font-weight: bold;">Getting data from website</h2>';
+    echo "<pre>";
+    print_r($json);
+    echo "</pre><hr />";
+}
+//------------------------------------------------------------------------------
 
 if(count($json["query"]["pages"]) != 1){
     die('To many pages to chose from! check the url!');
@@ -30,10 +49,26 @@ foreach ($json["query"]["pages"] AS $key => $value){
     $json = $json["query"]["pages"][$key]["revisions"][0]["*"];
 }
 
+if($debugMode){
+    echo '<h2 style="font-size: 1.5em;color: darkorange; font-weight: bold;">Select only content</h2>';
+    echo "<pre>";
+    print_r($json);
+    echo "</pre><hr />";
+}
+//------------------------------------------------------------------------------
 
-$json = preg_split("/\r\n|\n|\r/", $json);
+$array = preg_split("/\r\n|\n|\r/", $json);
+        
+if($debugMode){
+    echo '<h2 style="font-size: 1.5em;color: darkorange; font-weight: bold;">Split JSON into array</h2>';
+    echo "<pre>";
+    print_r($array);
+    echo "</pre><hr />";
+}     
+//------------------------------------------------------------------------------
+
 $output = array();
-foreach($json as $line){
+foreach($array as $line){
     $line = trim($line);
     if(strpos($line, '*') === 0) { //Show only lines staring with *
         $line = str_replace("*", "", $line); //Remove star
@@ -53,8 +88,23 @@ foreach($json as $line){
         $output[] = $return;
     }
 }
+if($debugMode){
+    echo '<h2 style="font-size: 1.5em;color: darkorange; font-weight: bold;">Clean Up Locations</h2>';
+    echo "<pre>";
+    print_r($output);
+    echo "</pre><hr />";
+}
+//------------------------------------------------------------------------------
 
 shuffle($output); //Random output
+
+if($debugMode){
+    echo '<h2 style="font-size: 1.5em;color: darkorange; font-weight: bold;">Shuffel Locations</h2>';
+    echo "<pre>";
+    print_r($output);
+    echo "</pre><hr />";
+}
+//------------------------------------------------------------------------------
 
 $homepage_url =  "//{$_SERVER['HTTP_HOST']}";
 $escaped_url = htmlspecialchars( $homepage_url, ENT_QUOTES, 'UTF-8' );
