@@ -30,28 +30,31 @@ foreach ($json["query"]["pages"] AS $key => $value){
     $json = $json["query"]["pages"][$key]["revisions"][0]["*"];
 }
 
-$json = str_ireplace('Naast een lijst van goede restaurantjes heb ik natuurlijk ook nog een ToDo lijst met aanraders van derden. [https://eetlocatie.waaagh.nl/ Laat de dino je helpen om een keuze te maken!]',null,$json);
-$json = trim($json);
 
-$array = preg_replace('/(===.+?)+(===)/i', null, $json); //Verwijder Tabel
-$array = preg_replace('/(==.+?)+(==)/i', null, $array); //Verwijder Tabel
-$array = explode("*", $array);
-foreach ($array as $key => $value){
-    $data = trim($array[$key]);
-    if(!empty($data)){
-        $output[$key] = $data;
+$json = preg_split("/\r\n|\n|\r/", $json);
+$output = array();
+foreach($json as $line){
+    $line = trim($line);
+    if(strpos($line, '*') === 0) { //Show only lines staring with *
+        $line = str_replace("*", "", $line); //Remove star
+        $line = trim($line); //Remove spaces and linebreaks                
+                
+        //Clean up for title
+        $cleanup = str_replace("https://", "", $line);
+        $cleanup = str_replace("http://", "", $cleanup);
+        $cleanup = str_replace("www.", "", $cleanup);
+                
+        $cleanup = explode("/", $cleanup); //Remove everything after and including the first /
+        
+		$return = array();
+        $return['title'] = $cleanup[0];                
+        $return['url'] = $line;
+        
+        $output[] = $return;
     }
 }
-shuffle($output); //Random output
 
-$url = $output[0];
-$name = $url;
-$name = str_replace("https://", "", $name);
-$name = str_replace("http://", "", $name);
-$name = str_replace("www.", "", $name);
-if(substr($name, -1) == '/') {
-    $name = substr($name, 0, -1);
-}
+shuffle($output); //Random output
 
 $homepage_url =  "//{$_SERVER['HTTP_HOST']}";
 $escaped_url = htmlspecialchars( $homepage_url, ENT_QUOTES, 'UTF-8' );
@@ -74,13 +77,11 @@ $escaped_url = htmlspecialchars( $homepage_url, ENT_QUOTES, 'UTF-8' );
         <div id="main-content">
             <div id="speech-panel">
                 <div id="speech-panel-message">Wij gaan eten bij...</div>
-                <div id="speech"><a id="speech-input" href="<?=$output[$count];?>"><?=$name;?></a></div>
+                <div id="speech"><a id="speech-input" target="_blank" href="<?=$output[0]['url'];?>"><?=$output[0]['title'];?></a></div>
                 <div id="speech-panel-reset">
                     <a class="gradient-button gradient-button-TEST" href="<?=$escaped_url;?>">Andere Locatie</a>
                 </div>
-                
             </div>
-        
             <div class="content">
                 <h2>Over de Eet Locatie Generator</h2>
                 <h3>Wat is de ELG?</h3>
