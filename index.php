@@ -1,9 +1,9 @@
 <?php
 //Config
-$wikiURL = 'https://www.waaagh.nl/api.php?format=json&action=query&titles=Restaurants_ToDo&prop=revisions&rvprop=content';
+$MarkdownFile = 'https://raw.githubusercontent.com/WaaaghNL/Restaurants-Todo/main/ToDo.md';
 $debug = false;
 
-$cacheInMinutes = 2;
+$cacheInMinutes = 5;
 $cacheFile = 'cache.json';
 
 //Don't edit below!
@@ -50,7 +50,7 @@ else{
     else {
         // Initialize cURL
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $wikiURL);
+        curl_setopt($ch, CURLOPT_URL, $MarkdownFile);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         
         // Execute cURL request
@@ -65,33 +65,15 @@ else{
         // Close cURL
         curl_close($ch);
         
-        $json = json_decode($get, true);
-        
         if($debugMode){
             echo '<h2 style="font-size: 1.5em;color: darkorange; font-weight: bold;">Getting data from website</h2>';
             echo "<pre>";
-            print_r($json);
+            print_r($get);
             echo "</pre><hr />";
-        }        
+        } 
         //------------------------------------------------------------------------------
 		
-        if(count($json["query"]["pages"]) != 1){
-            die('To many pages to chose from! check the url!');
-        }
-        
-        foreach ($json["query"]["pages"] AS $key => $value){
-            $json = $json["query"]["pages"][$key]["revisions"][0]["*"];
-        }
-        
-        if($debugMode){
-            echo '<h2 style="font-size: 1.5em;color: darkorange; font-weight: bold;">Select only content</h2>';
-            echo "<pre>";
-            print_r($json);
-            echo "</pre><hr />";
-        }
-        //------------------------------------------------------------------------------
-		
-        $array = preg_split("/\r\n|\n|\r/", $json);
+        $array = preg_split("/\r\n|\n|\r/", $get);
         
         if($debugMode){
             echo '<h2 style="font-size: 1.5em;color: darkorange; font-weight: bold;">Split JSON into array</h2>';
