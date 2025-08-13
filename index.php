@@ -173,7 +173,8 @@ $escaped_url = htmlspecialchars( $homepage_url, ENT_QUOTES, 'UTF-8' );
                 <div id="main-content">
                     <div id="speech-panel">
                         <div id="speech-panel-message">Wij gaan eten bij...</div>
-                    	<div id="speech"><a id="speech-input" target="_blank" href="<?=$location['url'];?>"><?=$location['title'];?></a></div>
+                    	<div id="speech"><a id="speech-input" target="_blank" href="<?=htmlspecialchars($location['url'], ENT_QUOTES, 'UTF-8');?>"><?=htmlspecialchars($location['title'], ENT_QUOTES, 'UTF-8');?></a>
+						</div>
                     	<div id="speech-panel-reset">
                     	    <?php
                     	    if(isset($_GET['noCache'])){
