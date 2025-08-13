@@ -124,7 +124,7 @@ else{
         //------------------------------------------------------------------------------
 		
         if(count($returnLocations)==0){
-            $location = array("title"=>"Not found, check wiki url!", "url" => $wikiURL);
+            $location = array("title"=>"Not found, check wiki url!", "url" => $MarkdownFile);
         }
         else{
             $location = $returnLocations[0];
