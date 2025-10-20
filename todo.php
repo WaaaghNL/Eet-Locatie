@@ -1,10 +1,10 @@
 <?php
 //Config
-$MarkdownFile = 'https://raw.githubusercontent.com/WaaaghNL/Restaurants-Todo/main/ToDo.md';
-$debug = false;
+$MarkdownFile = 'https://raw.githubusercontent.com/WaaaghNL/Restaurants/main/ToDo.md';
+$debug = true;
 
 $cacheInMinutes = 5;
-$cacheFile = 'cache.json';
+$cacheFile = 'cache-todo.json';
 
 //Don't edit below!
 //Don't edit below!
