@@ -179,7 +179,7 @@ $escaped_url = htmlspecialchars( $homepage_url, ENT_QUOTES, 'UTF-8' );
                     	    <?php
                     	    if(isset($_GET['noCache'])){
                     	        ?>
-                    	        <a class="gradient-button gradient-button-TEST" href="<?=$escaped_url;?>?noCache">Andere Locatie</a>
+                    	        <a class="gradient-button gradient-button-TEST" href="<?=$escaped_url;?>todo.php?noCache">Andere Locatie</a>
                     	        <?php
                     	    }
                     	    ?>
@@ -199,7 +199,7 @@ $escaped_url = htmlspecialchars( $homepage_url, ENT_QUOTES, 'UTF-8' );
                             <?php
                             $timer = ((filemtime($cacheFile) - (time() - 60 * $cacheInMinutes )) > 0) ? (filemtime($cacheFile) - (time() - 60 * $cacheInMinutes )) : 120;
                             ?>
-                            <p>Onze dino is behoorlijk standvast, als hij iets aanraad gaat hij er ook voor. Het duurt nog <?=$timer;?> secoden voor je hem kan overtuigen voor een nieuw adresje! <a href="<?=$escaped_url;?>?noCache" style="color:#f5f5f5;">Over rule de dino</a></p>
+                            <p>Onze dino is behoorlijk standvast, als hij iets aanraad gaat hij er ook voor. Het duurt nog <?=$timer;?> secoden voor je hem kan overtuigen voor een nieuw adresje! <a href="<?=$escaped_url;?>todo.php?noCache" style="color:#f5f5f5;">Over rule de dino</a></p>
                             <?php
                         }
                         ?>
