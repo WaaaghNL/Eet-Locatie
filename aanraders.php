@@ -179,7 +179,7 @@ $escaped_url = htmlspecialchars( $homepage_url, ENT_QUOTES, 'UTF-8' );
                     	    <?php
                     	    if(isset($_GET['noCache'])){
                     	        ?>
-                    	        <a class="gradient-button gradient-button-TEST" href="<?=$escaped_url;?>aanraders.php?noCache">Andere Locatie</a>
+                    	        <a class="gradient-button gradient-button-TEST" href="<?=$escaped_url;?>/aanraders.php?noCache">Andere Locatie</a>
                     	        <?php
                     	    }
                     	    ?>
