@@ -166,7 +166,7 @@ elseif(isset($_GET['type']) AND $_GET['type'] == "todo"){
 else{
   //Niks gekozen
 }
-$homepage_url =  "//{$_SERVER['HTTP_HOST']}/v2";
+$homepage_url =  "//{$_SERVER['HTTP_HOST']}";
 $escaped_url = htmlspecialchars( $homepage_url, ENT_QUOTES, 'UTF-8' );
 
 if($debugMode){
