@@ -1,4 +1,4 @@
-name: Publish Website to Live CPanel
+name: Publish Website to Live
 on:
   push:
     branches:
@@ -8,16 +8,34 @@ jobs:
     name: FTP-Deploy-Action
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
       with:
         fetch-depth: 2
     - name: FTP-Deploy-Action
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      uses: SamKirkland/FTP-Deploy-Action@v4.4.0
       with:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: ./
+        exclude: |
+          **/.git*
+          **/.git*/**
+  FTP-Deploy-Action-ISPConfig:
+    name: FTP-Deploy-Action-ISPConfig
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6
+      with:
+        fetch-depth: 2
+    - name: FTP-Deploy-Action
+      uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+      with:
+        server: ${{ secrets.FTP_SERVER_ISPCONFIG }}
+        username: ${{ secrets.FTP_USERNAME_ISPCONFIG }}
+        password: ${{ secrets.FTP_PASSWORD_ISPCONFIG }}
+        port: 921
+        server-dir: ./web/
         exclude: |
           **/.git*
           **/.git*/**
